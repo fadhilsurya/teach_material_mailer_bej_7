@@ -24,10 +24,17 @@ function sendEmail(req, res) {
     transporter.sendMail(mail, (err, info) => {
         if (err) {
             console.error(err)
-            return
-        }
 
-        console.log('sucess sending email')
+            res.json({
+                data: err,
+                status: 500
+            })
+        }
+        res.json({
+            data: 'success',
+            status: 200
+        })
+
         return
     })
 
